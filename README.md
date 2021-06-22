@@ -10,7 +10,9 @@ Pre-requisites:
   Docker version 20
   
 Run `mvn clean package`
+
 Run `cp target/task-0.0.1-SNAPSHOT.jar src/main/docker`
+
 Run `cd ./src/main/docker/ && docker-compose up`
 
 
