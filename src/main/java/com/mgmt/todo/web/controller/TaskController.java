@@ -38,10 +38,12 @@ public class TaskController {
     @PutMapping("/api/tasks/{id}")
     public TaskDTO updateTask(@RequestBody TaskDTO taskDTO,
                               @PathVariable Long id) {
-        if(!id.equals(taskDTO.getId())) {
-            throw new RuntimeException("Id in the path do not match with the request body");
+
+        if (!id.equals(taskDTO.getId())) {
+            throw new BadRequestException("Id in the path does not match with the request body");
         }
-        return taskService.saveTask(taskDTO);
+        return taskService.updateTask(taskDTO);
+
     }
 }
 

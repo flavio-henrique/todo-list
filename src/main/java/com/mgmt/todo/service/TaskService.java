@@ -4,6 +4,7 @@ import com.mgmt.todo.persistence.model.Task;
 import com.mgmt.todo.persistence.model.UserAuth;
 import com.mgmt.todo.persistence.repository.TaskRepository;
 import com.mgmt.todo.security.SessionProvider;
+import com.mgmt.todo.web.controller.BadRequestException;
 import com.mgmt.todo.web.dto.Status;
 import com.mgmt.todo.web.dto.TaskDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,6 @@ import java.util.stream.Collectors;
 public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
-    @PersistenceContext
-    EntityManager entityManager;
 
     public List<TaskDTO> reorderTask(Long taskId, Long newOrder){
 
@@ -30,15 +29,13 @@ public class TaskService {
         String username = (String) authentication.getPrincipal();
 
         Task task = taskRepository.findByIdAndUserAuthUsername(taskId, username)
-                .orElseThrow(() -> new RuntimeException("Task not Found"));
+                .orElseThrow(() -> new BadRequestException("Task not Found"));
 
         if (newOrder < task.getOrder()) {
             taskRepository.reorderOthersDown(taskId, newOrder);
         } else {
             taskRepository.reorderOthersUp(taskId, newOrder);
         }
-        //entityManager.flush();
-        //entityManager.clear();
         taskRepository.setNewPosition(taskId, newOrder);
 
         List<Task> tasks = taskRepository.findAllByUserAuthUsernameAndStatusOrderByOrderAsc(username,
@@ -52,6 +49,15 @@ public class TaskService {
                     .status(Status.valueOf(taskReordered.getStatus().name()))
                     .build())
             .collect(Collectors.toList());
+    }
+
+    public TaskDTO updateTask(TaskDTO taskDTO){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = (String) authentication.getPrincipal();
+
+        taskRepository.findByIdAndUserAuthUsername(taskDTO.getId(), username)
+                .orElseThrow(() -> new BadRequestException("Task not Found"));
+        return saveTask(taskDTO);
     }
 
     public TaskDTO saveTask(TaskDTO taskDTO){
@@ -103,7 +109,7 @@ public class TaskService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = (String) authentication.getPrincipal();
         Task task = taskRepository.findByIdAndUserAuthUsername(id, username)
-                .orElseThrow(() -> new RuntimeException("Task not Found"));
+                .orElseThrow(() -> new BadRequestException("Task not Found"));
         TaskDTO taskDTO = TaskDTO.builder()
                 .id(task.getId())
                 .title(task.getTitle())

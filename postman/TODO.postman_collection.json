@@ -60,11 +60,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/api/login",
+					"raw": "localhost:8080/api/login",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8080",
 					"path": [
 						"api",
 						"login"
@@ -98,11 +98,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/api/tasks",
+					"raw": "localhost:8080/api/tasks",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks"
@@ -136,11 +136,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/api/tasks/reorder",
+					"raw": "localhost:8080/api/tasks/reorder",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks",
@@ -175,11 +175,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/api/tasks/1",
+					"raw": "localhost:8080/api/tasks/1",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks",
@@ -214,11 +214,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/api/tasks/1",
+					"raw": "localhost:8080/api/tasks/1",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks",
@@ -253,11 +253,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/api/tasks/1",
+					"raw": "localhost:8080/api/tasks/1",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks",
@@ -295,11 +295,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/api/tasks",
+					"raw": "localhost:8080/api/tasks",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks"
@@ -336,11 +336,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/api/tasks?status=TODO",
+					"raw": "localhost:8080/api/tasks?status=TODO",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks"
@@ -380,11 +380,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8081/api/tasks/1",
+					"raw": "localhost:8080/api/tasks/1",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8080",
 					"path": [
 						"api",
 						"tasks",
