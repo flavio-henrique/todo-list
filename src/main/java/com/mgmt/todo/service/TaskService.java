@@ -41,13 +41,7 @@ public class TaskService {
         List<Task> tasks = taskRepository.findAllByUserAuthUsernameAndStatusOrderByOrderAsc(username,
                 com.mgmt.todo.persistence.model.Status.TODO);
         return tasks.stream()
-            .map(taskReordered -> TaskDTO.builder()
-                    .id(taskReordered.getId())
-                    .title(taskReordered.getTitle())
-                    .description(taskReordered.getDescription())
-                    .order(taskReordered.getOrder())
-                    .status(Status.valueOf(taskReordered.getStatus().name()))
-                    .build())
+            .map(taskReordered -> TaskMapper.mapToTaskDTO(task))
             .collect(Collectors.toList());
     }
 
@@ -64,24 +58,9 @@ public class TaskService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = (String) authentication.getPrincipal();
 
-        Task task = Task.builder()
-                .id(taskDTO.getId())
-                .title(taskDTO.getTitle())
-                .description(taskDTO.getDescription())
-                .order(taskDTO.getOrder())
-                .status(com.mgmt.todo.persistence.model.Status.valueOf(taskDTO.getStatus().name()))
-                .userAuth(UserAuth.builder()
-                        .username(username)
-                        .build())
-                .build();
+        Task task = TaskMapper.mapToTask(taskDTO, username);
         Task saved = taskRepository.save(task);
-        return TaskDTO.builder()
-                .id(saved.getId())
-                .title(saved.getTitle())
-                .description(saved.getDescription())
-                .order(saved.getOrder())
-                .status(Status.valueOf(saved.getStatus().name()))
-                .build();
+        return TaskMapper.mapToTaskDTO(task);
     }
 
     public List<TaskDTO> listTask(Status status) {
@@ -95,13 +74,7 @@ public class TaskService {
             tasks = taskRepository.findAllByUserAuthUsername(username);
         }
         return tasks.stream()
-                .map(task -> TaskDTO.builder()
-                        .id(task.getId())
-                        .title(task.getTitle())
-                        .description(task.getDescription())
-                        .order(task.getOrder())
-                        .status(Status.valueOf(task.getStatus().name()))
-                        .build())
+                .map(TaskMapper::mapToTaskDTO)
                 .collect(Collectors.toList());
     }
 
@@ -110,13 +83,7 @@ public class TaskService {
         String username = (String) authentication.getPrincipal();
         Task task = taskRepository.findByIdAndUserAuthUsername(id, username)
                 .orElseThrow(() -> new BadRequestException("Task not Found"));
-        TaskDTO taskDTO = TaskDTO.builder()
-                .id(task.getId())
-                .title(task.getTitle())
-                .description(task.getDescription())
-                .order(task.getOrder())
-                .status(Status.valueOf(task.getStatus().name()))
-                .build();
+        TaskDTO taskDTO = TaskMapper.mapToTaskDTO(task);
         taskRepository.delete(Task.builder().id(id).build());
         return taskDTO;
     }
