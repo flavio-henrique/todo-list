@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/todo
+    username: postgres
+    password: 123456
+    driverClassName: org.postgresql.Driver
+
+
+logging:
+  level:
+    org:
+      springframework: debug
