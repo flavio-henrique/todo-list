@@ -5,9 +5,9 @@ It's a Spring boot App based on Java version 8, it was choosed this tech stack b
 
 ## Run Locally
 Pre-requisites:
-  Maven version 10
-  Open JDK version 16 
-  Docker version 20
+  - Maven version 10
+  - Open JDK version 16 
+  - Docker version 20
   
 Run `mvn clean package`
 
