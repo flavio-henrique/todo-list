@@ -9,7 +9,7 @@ Pre-requisites:
   - Open JDK version 16 
   - Docker version 20
   
-Run `mvn clean package`
+Run `./mvnw clean package`
 
 Run `cp target/task-0.0.1-SNAPSHOT.jar src/main/docker`
 
