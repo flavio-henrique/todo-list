@@ -2,7 +2,6 @@
 
 It's a Spring boot App based on Java version 8, it was choosed this tech stack because is the stack that I have being working lately.
 
-![Screenshot](invoice-app.jpg)
 
 ## Run Locally
 Pre-requisites:
