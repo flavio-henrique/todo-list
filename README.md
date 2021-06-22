@@ -13,7 +13,7 @@ Run `./mvnw clean package`
 
 Run `cp target/task-0.0.1-SNAPSHOT.jar src/main/docker`
 
-Run `cd ./src/main/docker/ && docker-compose up`
+Run `(cd ./src/main/docker/ && docker-compose up)`
 
 The App will be running on `localhost:8080/api`
 
